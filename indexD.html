@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>Turn.js 实现翻书效果</title>
+    <link rel="stylesheet" type="text/css" href="css/basic.css"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/e-smart-zoom-jquery.min.js"></script>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        /*.hard {width: 400px; height: 640px;position:absolute;overflow: hidden;border:1px solid red;}*/
+    </style>
+</head>
+<body>
+<!-- <div class="shade">
+    <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+    </div>
+    <div class="number"></div>
+</div> -->
+<div class="flipbook-viewport">
+    <div class="previousPage"></div>
+    <div class="nextPage"></div>
+    <div class="return"></div>
+    <img class="btnImg" src="./image/btn.gif" style="display: none"/>
+
+    <div class="container">
+        <div class="flipbook" style="width: 400px; height: 640px;position:absolute;">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){        
+        // $('.shade').hide();
+        var _tagHtml = "";
+        for (var i = 1; i < 20; i++) {
+             _tagHtml += ' <img class="imageFullScreen" src="image/00' + (i < 10 ? '0' + i : i) + '.jpg"/>'
+        }
+
+        // for (var i = 1; i <= 41; i++) {
+        //     if (i == 1) {
+        //         _tagHtml += ' <img class="imageFullScreen" src="image/00' + (i < 10 ? '0' + i : i) + '.jpg"/>';
+        //     }else if(i == 2){
+        //         _tagHtml += '<div class="catelog" style="overflow-y:scroll">';
+        //         for (var i = 1; i <= 16; i++) {         
+        //             _tagHtml += '<a href="javascript:void:(0);" onclick="catalogLink('+i+')">目录-------'+i+'</a>'
+        //               }  
+        //         _tagHtml += '</div>';
+        //     }else if (i == 41) {
+        //         _tagHtml += ' <div id="end"  style="background:url(image/00' + (i < 10 ? '0' + i : i) + '.jpg) center top no-repeat;background-size:100%"></div>';
+        //     } else {
+        //         _tagHtml += ' <img class="imageFullScreen" src="image/00' + (i < 10 ? '0' + i : i) + '.jpg"/>';
+        //     }
+        // }
+
+        $(".flipbook").append(_tagHtml);
+        // var w = $(".graph").width();
+        // $(".flipbook-viewport").show();
+        
+       // $('.catelog').each(function(){
+       //      $('this').bind('touchstart',function(event){
+       //          event.stopPropagation();
+       //         // return false;
+       //         // alert(1);
+       //      });
+       // });
+
+        $('.imageFullScreen').each(function(){
+            $(this).smartZoom({'containerClass':'zoomableContainer'});
+        }); 
+       
+    });
+</script>
